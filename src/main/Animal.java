@@ -3,41 +3,34 @@ package main;
 import cats.Cat;
 import dogs.Dog;
 
-abstract class Animal {
+public abstract class Animal {
 
-    private String name;
     private int weight;
+    private String name;
 
-       public void eatCat(Food food) {
-
-        weight = +food.foodWeight;
-        Cat out1 = new Cat();
-        out1.doMeow();
+    public Animal(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
     }
 
-    public void eatDog(Food food) {
+    public void eat(Food food) {
 
-        weight = +food.foodWeight;
-        Dog out2 = new Dog();
-        out2.doBark();
+        weight += food.getDozeWeight();
     }
 
-    public static void main(String[] args) { 
-
-        Food doze = new Food(); 
-        doze.getDozeWeight(); 
-        Animal cat1 = new Animal(); 
-        Animal dog1 = new Animal(); 
-        cat1.name = cats.Cat.catName; 
-        dog1.name = dogs.Dog.dogName; 
-        cat1.weight = 3000; 
-        dog1.weight = 6000; 
-        cat1.eatCat(main.Food.foodWeight); 
-        dog1.eatDog(main.Food.foodWeight); 
+    public int getWeight() {
+        return weight;
     }
 
+    public String getName() {
+        return name;
+    }
 
-
-
+    public static void main(String[] args) {
+        Animal cat = new Cat("Barsik", 12);
+        Animal dog = new Dog("Sharik", 30);
+        cat.eat(new Food(3));
+        dog.eat(new Food(7));
+    }
 }
 
